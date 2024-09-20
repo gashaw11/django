@@ -1,0 +1,6 @@
+The Question model represents a database table (usually defined in models.py). It likely has fields such as text, created_at, and others.
+The .objects attribute provides a manager for querying the database.
+.get(pk=question_id) retrieves a single object based on its primary key (pk).
+Replace myapp with the actual name of your Django app.
+
+

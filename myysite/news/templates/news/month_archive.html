@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Articles for {{month}}/{{year}}</title>
+</head>
+<body>
+    <h1>Articles for {{month}}/{{year}}</h1>
+    <ul>
+        {% for article in article_list %}
+    
+            <li>{{article.pub_date}}: <a href="{% url 'article_detail' year=article.pub_date.year 
+                month=article.pub_date.month pk=article.pk %}"> {{article.title}}</a></li>
+                {% endfor %}
+    </ul>
+</body>
+</html>
