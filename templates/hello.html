@@ -7,10 +7,21 @@
 </head>
 <body>
     <h1>Hello, World!</h1>
+    <ul>
+      {% if products %}
+          {% for product in products %}
+              <li>{{ product.name }} - ${{ product.price }} - Stock: {{ product.stock }}</li>
+          {% endfor %}
+      {% else %}
+          <li>No products available.</li>
+      {% endif %}
+  </ul>
 </body>
 <h1>Hello, World!</h1>
 <h1>Hello, World!</h1>
 <h1>Hello, World!</h1>
+<h1>Product List</h1>
+
 </html>
 <h1>Hello, World!</h1>
 <table border="1">
