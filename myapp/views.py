@@ -3,5 +3,5 @@ from .models import Product
 
 def hello_world(request):
     products = Product.objects.all()
-    return render(request, 'base.html',{'products':products})
+    return render(request, 'myapp/home.html',{'products':products})
 

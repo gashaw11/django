@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}MyApp Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to MyApp</h1>
+    <p>This is the home page of MyApp.</p>
+
+    <h2>Product List</h2>
+    <ul>
+        {% if products %}
+            {% for product in products %}
+                <li>{{ product.name }} - ${{ product.price }} - Stock: {{ product.stock }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No products available.</li>
+        {% endif %}
+    </ul>
+
+    <h2>Simple Form</h2>
+    <form>
+        <input type="text" placeholder="Enter your name">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
