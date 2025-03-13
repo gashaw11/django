@@ -35,11 +35,17 @@
 
     {% if total_price > 0 %}
         <h2>Selected Items:</h2>
-        <ul>
-            {% for item in selected_items %}
-                <li>{{ item }} - ${{ menu|get_price:item }}</li>
-            {% endfor %}
-        </ul>
+        {% for item in selected_items %}
+    <li>
+        {{ item }} - $
+        {% for menu_item in menu %}
+            {% if menu_item.name == item %}
+                {{ menu_item.price }}
+            {% endif %}
+        {% endfor %}
+    </li>
+{% endfor %}
+
         <h2>Total: ${{ total_price }}</h2>
     {% endif %}
 
