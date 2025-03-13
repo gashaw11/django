@@ -22,4 +22,28 @@
         <input type="text" placeholder="Enter your name">
         <button type="submit">Submit</button>
     </form>
+
+    <h2>Taqueria Menu</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for item, price in menu.items %}
+            <label>
+                <input type="checkbox" name="items" value="{{ item }}">
+                {{ item }} - ${{ price }}
+            </label><br>
+        {% endfor %}
+        <button type="submit">Calculate Total</button>
+    </form>
+
+    {% if total_price > 0 %}
+        <h2>Selected Items:</h2>
+        <ul>
+            {% for item in selected_items %}
+                <li>{{ item }} - ${{ menu[item] }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Total: ${{ total_price }}</h2>
+    {% endif %}
+
 {% endblock %}
+
