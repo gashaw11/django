@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Product
 
 def product_item(request):
+    
     data = Product.objects.all()
     
 
