@@ -39,7 +39,7 @@ def taqueria_menu(request):
         selected_items = request.POST.getlist("items")  # Get selected items
         total_price = sum(item["price"] for item in menu if item["name"] in selected_items)
 
-    return render(request, 'myapp/home.html', {
+    return render(request, 'myapp/coke.html', {
         
         "menu": menu,  # Taqueria menu
         "total_price": total_price,  # Total price of selected menu items
@@ -71,7 +71,7 @@ def coke_machine(request):
         except ValueError:
             error_message = "Invalid input. Please enter a number."
 
-    return render(request, "myapp/home.html", {
+    return render(request, "myapp/coke.html", {
         "amount_due": request.session["amount_due"],
         "inserted_coins": request.session["inserted_coins"],
         "total_inserted": request.session["total_inserted"],
