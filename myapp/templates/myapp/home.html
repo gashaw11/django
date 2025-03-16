@@ -5,6 +5,19 @@
 {% block content %}
     <h1>Welcome to MyApp</h1>
     <p>This is the home page of MyApp.</p>
+    <h1>Available Products</h1>
+
+    <ul>
+        {% for product in data %}  {# Use "data" instead of "products" #}
+            <li>
+                <h2>{{ product.name }}</h2>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+                <p>{{ product.description }}</p>
+            </li>
+        {% empty %}
+            <p>No products available.</p>
+        {% endfor %}
+    </ul>
 
     <h2>Taqueria Menu</h2>
     <form method="post">

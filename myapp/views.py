@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Product
 
 def hello_world(request):
+    data = Product.objects.all()
     # Fetch products from the database
     
 
@@ -26,7 +27,7 @@ def hello_world(request):
         total_price = sum(item["price"] for item in menu if item["name"] in selected_items)
 
     return render(request, 'myapp/home.html', {
-        
+        "data":data,
         "menu": menu,  # Taqueria menu
         "total_price": total_price,  # Total price of selected menu items
         "selected_items": selected_items  # Selected menu items
