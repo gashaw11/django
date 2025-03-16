@@ -16,4 +16,8 @@ user.set_password("new_secure_password")
 user.save()
 exit()
 
+# #sql
+SELECT * FROM myapp_product;
+
+
 
