@@ -1,0 +1,16 @@
+{% block content %}
+{% block title %}MyApp Product s{% endblock %}
+<h1>Available Products</h1>
+
+    <ul>
+        {% for product in data %}  {# Use "data" instead of "products" #}
+            <li>
+                <h2>{{ product.name }}</h2>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+                <p>{{ product.description }}</p>
+            </li>
+        {% empty %}
+            <p>No products available.</p>
+        {% endfor %}
+    </ul>
+    {% endblock %}

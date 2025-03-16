@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}MyApp Coke {% endblock %}
+{% block content %}
+<h2>Coke Vending Machine</h2>
+
+<p><strong>Amount Due:</strong> {{ amount_due }} cents</p>
+<p><strong>Inserted Coins:</strong> {{ inserted_coins|join:", " }}</p>
+<p><strong>Total Inserted:</strong> {{ total_inserted }} cents</p>
+
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+{% if amount_due > 0 %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="coin">Insert Coin (5, 10, 25):</label>
+        <input type="number" name="coin" required>
+        <button type="submit">Submit</button>
+    </form>
+{% else %}
+    <p style="color: green;"><strong>Change Owed:</strong> {{ change_owed }} cents</p>
+    <p>Enjoy your Coke! 🥤</p>
+    <form method="post" action="{% url 'reset_coke' %}">
+        {% csrf_token %}
+        <button type="submit">Buy Another</button>
+    </form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% block content %}
+<h2>Taqueria Menu</h2>
+<form method="post">
+    {% csrf_token %}
+    <ul>
+        {% for item in menu %}
+            <li>
+                <label>
+                    <input type="checkbox" name="items" value="{{ item.name }}">
+                    {{ item.name }} - ${{ item.price }}
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Calculate Total</button>
+</form>
+
+{% if total_price > 0 %}
+    <h2>Selected Items:</h2>
+    {% for item in selected_items %}
+<li>
+    {{ item }} - $
+    {% for menu_item in menu %}
+        {% if menu_item.name == item %}
+            {{ menu_item.price }}
+        {% endif %}
+    {% endfor %}
+</li>
+
+{% endfor %}
+
+    <h2>Total: ${{ total_price }}</h2>
+{% endif %}
+{% endblock %}
