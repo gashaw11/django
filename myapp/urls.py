@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import hello_world,coke_machine,reset_coke
+from .views import product_item,coke_machine,reset_coke,home_view
 
 urlpatterns = [
-    path('',    taqueria_menu),
+    path('', home_view,name="home_view"),
     path("coke/", coke_machine, name="coke_machine"),
     path("reset_coke/", reset_coke, name="reset_coke"),
 ]

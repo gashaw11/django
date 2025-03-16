@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Product
+def home_view(request):
+    return render(request, 'myapp/home.html')  # Home page
 
 def product_item(request):
     
