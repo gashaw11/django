@@ -1,16 +1,18 @@
 # SETUP
 
-.\myvenv\Scripts\Activate.  
+.\myvenv\Scripts\Activate
 
-python -m venv myvenv.  
+source myvenv/bin/activate
 
-pip install -r requirements.txt.  
+python -m venv myvenv
+
+pip install -r requirements.txt 
 
 http://127.0.0.1:8000/admin/
 
 # #opening shell
 
-python manage.py shell.
+python manage.py shell
 
 from django.contrib.auth.models import User.
 
