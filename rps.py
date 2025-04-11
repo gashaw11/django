@@ -11,61 +11,72 @@
 #get_get_computer_move()
 #print_final_result()
 #main()
-user_wins = 0
-computer_wins = 0
-total_rounds = 0
 import random
 
-rps = ["paper","rock","scissors"]
+class RockPaperScissorsGame:
+    def __init__(self):
+        self.user_wins = 0
+        self.computer_wins = 0
+        self.total_rounds = 0
+        self.rps = ["rock", "paper", "scissors"]
 
-def get_user_move():
-    user = input("enter rock,paper,scissors or q for quit").lower()
-    if user not in rps:
-        print("invalid move")
-        return None
-    return user
+    def get_user_move(self):
+        user = input("Enter rock, paper, scissors or q to quit: ").lower()
+        if user == "q":
+            exit("Game exited by user.")
+        if user not in self.rps:
+            print("Invalid move")
+            return None
+        return user
 
-def get_get_computer_move():
-    return random.choice(rps)
+    def get_computer_move(self):
+        return random.choice(self.rps)
 
-def decide_winner(user,computer_move):
-    global user_wins, computer_wins
-    if computer_move == user:
-        print("draw")
-    elif computer_move == "paper" and user == "rock":
-        print("computer won")
-        computer_wins +=1 
-    elif computer_move == "scissors" and user == "paper":
-        print("computer won")
-        computer_wins +=1 
-    elif computer_move == "rock" and user == "scissors":
-        print("computer won") 
-        computer_wins +=1
-    else:
-        print("user won") 
-        user_wins +=1
+    def decide_winner(self, user, computer):
+        if user == computer:
+            return "Draw"
+        elif (user == "rock" and computer == "scissors") or \
+             (user == "scissors" and computer == "paper") or \
+             (user == "paper" and computer == "rock"):
+            return "User"
+        else:
+            return "Computer"
 
-def print_final_result():
-    if user_wins > computer_wins:
-        print("User is the overall winner!")
-    elif computer_wins > user_wins:
-        print("Computer is the overall winner!")
-    else:
-        print("It's a tie overall!")
-    
-    
+    def get_final_result(self):
+        if self.user_wins > self.computer_wins:
+            return "User is the overall winner!"
+        elif self.computer_wins > self.user_wins:
+            return "Computer is the overall winner!"
+        else:
+            return "It's a tie overall!"
 
+    def play(self):
+        while self.total_rounds < 6:
+            user_move = self.get_user_move()
+            if user_move is None:
+                continue
 
-def main():
-    global total_rounds
-    while total_rounds < 6:
-        user_move = get_user_move()
-        if user_move is None:
-            continue
-        get_computer_move = get_get_computer_move()
-        decide_winner(user_move, get_computer_move)
-        total_rounds += 1
+            computer_move = self.get_computer_move()
+            print(f"Computer chose: {computer_move}")
 
-    print_final_result()
+            result = self.decide_winner(user_move, computer_move)
 
-main()
+            if result == "User":
+                self.user_wins += 1
+                print("You won this round!")
+            elif result == "Computer":
+                self.computer_wins += 1
+                print("Computer won this round!")
+            else:
+                print("This round is a draw!")
+
+            self.total_rounds += 1
+            print(f"Score: You {self.user_wins} - Computer {self.computer_wins}\n")
+
+        print("--- Final Result ---")
+        print(f"Final Score: You {self.user_wins} - Computer {self.computer_wins}")
+        print(self.get_final_result())
+
+# Create a game object and play
+game = RockPaperScissorsGame()
+game.play()
